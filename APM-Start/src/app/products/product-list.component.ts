@@ -4,10 +4,10 @@ import { Product } from '../shared/product.model';
 
 @Component({
   selector: "pm-products",
-  templateUrl: "./product-list.component.html"
+  templateUrl: "./product-list.component.html",
+  styleUrls: ["./product-list.component.css"]
 })
 export class ProductListComponent implements OnInit {
-
   pageTitle: string = "Product List";
   products: Array<Product> = productData;
 

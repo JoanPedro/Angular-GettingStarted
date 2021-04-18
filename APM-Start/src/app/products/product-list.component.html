@@ -30,7 +30,14 @@
         </thead>
         <tbody>
           <tr *ngFor="let product of products">
-            <td></td>
+            <td>
+              <img
+                [src]="product.imageUrl"
+                [title]="product.productName"
+                [alt]="product.description"
+                ngClass="imgStyle"
+              >
+            </td>
             <td>{{ product.productName }}</td>
             <td>{{ product.productCode }}</td>
             <td>{{ product.releaseDate }}</td>
