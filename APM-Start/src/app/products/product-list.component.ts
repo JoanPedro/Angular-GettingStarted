@@ -39,4 +39,8 @@ export class ProductListComponent implements OnInit {
         )
       );
   }
+
+  onNotify(message: string): void {
+    console.log(message)
+  }
 }
