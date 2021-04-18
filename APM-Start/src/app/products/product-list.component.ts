@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { default as productData } from '../../api/products/products.json';
-import { Product } from '../shared/product.model';
+import { Product } from '../shared/models/product.model';
 
 @Component({
   selector: "pm-products",
@@ -13,7 +13,7 @@ export class ProductListComponent implements OnInit {
   showImage: boolean = false;
   pageTitle: string = "Product List";
   products: Array<Product> = productData;
-  filteredProducts: Array<Product> = [];
+  filteredProducts: Array<Product> = this.performFilter('');
 
   get listFilter(): string { return this._listFilter; }
 
