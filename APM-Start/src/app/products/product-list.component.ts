@@ -8,10 +8,19 @@ import { Product } from '../shared/product.model';
   styleUrls: ["./product-list.component.css"]
 })
 export class ProductListComponent implements OnInit {
+  private _listFilter: string = '';
+
   showImage: boolean = false;
   pageTitle: string = "Product List";
-  listFilter: string = 'cart';
   products: Array<Product> = productData;
+  filteredProducts: Array<Product> = [];
+
+  get listFilter(): string { return this._listFilter; }
+
+  set listFilter(value: string) {
+    this._listFilter = value;
+    this.filteredProducts = this.performFilter(value);
+  }
 
   constructor() { }
 
@@ -19,5 +28,15 @@ export class ProductListComponent implements OnInit {
 
   toggleImage: () => void = () => {
     this.showImage = !this.showImage;
+  }
+
+  performFilter(filterBy: string): Array<Product> {
+    const filterByOnLocaleLowerCase: string = filterBy.toLocaleLowerCase();
+    return this.products
+      .filter(
+        product => product.productName.toLocaleLowerCase().includes(
+          filterByOnLocaleLowerCase
+        )
+      );
   }
 }
