@@ -9,16 +9,13 @@ import { Product } from '../shared/product.model';
 })
 export class ProductListComponent implements OnInit {
   showImage: boolean = false;
-
   pageTitle: string = "Product List";
+  listFilter: string = 'cart';
   products: Array<Product> = productData;
 
-  constructor() {
-  }
+  constructor() { }
 
-  ngOnInit(): void {
-    console.log(this.products)
-  }
+  ngOnInit(): void { }
 
   toggleImage: () => void = () => {
     this.showImage = !this.showImage;
