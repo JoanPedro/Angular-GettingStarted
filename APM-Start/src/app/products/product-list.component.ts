@@ -8,6 +8,8 @@ import { Product } from '../shared/product.model';
   styleUrls: ["./product-list.component.css"]
 })
 export class ProductListComponent implements OnInit {
+  showImage: boolean = false;
+
   pageTitle: string = "Product List";
   products: Array<Product> = productData;
 
@@ -18,6 +20,7 @@ export class ProductListComponent implements OnInit {
     console.log(this.products)
   }
 
-  parseProduct: () => void = () => {
+  toggleImage: () => void = () => {
+    this.showImage = !this.showImage;
   }
 }
