@@ -40,7 +40,7 @@ export class ProductListComponent implements OnInit {
       );
   }
 
-  onNotify(message: string): void {
-    console.log(message)
+  onRatingClicked(message: string): void {
+    this.pageTitle = 'Product List: ' + message;
   }
 }

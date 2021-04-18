@@ -10,7 +10,7 @@ export class StarComponent implements OnInit, OnChanges {
   rating: number = 0;
 
   @Output()
-  notify: EventEmitter<string> = new EventEmitter<string>();
+  ratingClicked: EventEmitter<string> = new EventEmitter<string>();
 
   cropWidth: number = 75;
 
@@ -23,6 +23,6 @@ export class StarComponent implements OnInit, OnChanges {
   }
 
   onClick(): void {
-    this.notify.emit('clicked')
+    this.ratingClicked.emit(`The rating ${ this.rating } was clicked!`)
   }
 }
