@@ -1,6 +1,6 @@
 import { Product } from './../../shared/models/product.model';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   templateUrl: './product-detail.component.html',
@@ -11,7 +11,8 @@ export class ProductDetailComponent implements OnInit {
   product: Product | undefined;
 
   constructor(
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -19,4 +20,7 @@ export class ProductDetailComponent implements OnInit {
     this.pageTitle += ` ${id}`;
   }
 
+  onBack(): void {
+    this.router.navigate(['/products']);
+  }
 }
