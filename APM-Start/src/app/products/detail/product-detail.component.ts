@@ -1,3 +1,4 @@
+import { Product } from './../../shared/models/product.model';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
@@ -7,6 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ProductDetailComponent implements OnInit {
   pageTitle: string = "Product Detail";
+  product: Product | undefined;
 
   constructor(
     private activatedRoute: ActivatedRoute
