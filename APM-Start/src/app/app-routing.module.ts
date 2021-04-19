@@ -13,7 +13,7 @@ const routes: Routes = [
   { path: 'products', children: productRouterChildren },
   { path: 'welcome', component: WelcomeComponent },
   { path: '', redirectTo: 'welcome', pathMatch: 'full'},
-  { path: '**', redirectTo: 'welcome' },
+  { path: '**', redirectTo: 'welcome',  pathMatch: 'full' },
 ];
 
 @NgModule({
