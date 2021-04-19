@@ -1,19 +1,22 @@
 import { ProductService } from './product.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Product } from '../shared/models/product.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: "pm-products",
   templateUrl: "./product-list.component.html",
   styleUrls: ["./product-list.component.css"]
 })
-export class ProductListComponent implements OnInit {
+export class ProductListComponent implements OnInit, OnDestroy {
   private _listFilter: string = '';
+  private _sub!: Subscription;
 
-  showImage: boolean = false;
-  pageTitle: string = "Product List";
   products: Array<Product> = new Array();
   filteredProducts: Array<Product> = new Array();
+  showImage: boolean = false;
+  errorMessage: string = '';
+  pageTitle: string = "Product List";
 
   get listFilter(): string { return this._listFilter; }
 
@@ -27,8 +30,17 @@ export class ProductListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.products = this.productService.getProducts();
-    this.filteredProducts = this.performFilter('');
+    this._sub = this.productService.getProducts().subscribe({
+      next: products => {
+        this.products = products;
+        this.filteredProducts = this.performFilter('');
+      },
+      error: err => this.errorMessage = err
+    });
+  }
+
+  ngOnDestroy(): void {
+    this._sub.unsubscribe();
   }
 
   toggleImage: () => void = () => {
