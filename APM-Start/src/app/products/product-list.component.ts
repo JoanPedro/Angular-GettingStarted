@@ -1,5 +1,5 @@
+import { ProductService } from './product.service';
 import { Component, OnInit } from '@angular/core';
-import { default as productData } from '../../api/products/products.json';
 import { Product } from '../shared/models/product.model';
 
 @Component({
@@ -12,8 +12,8 @@ export class ProductListComponent implements OnInit {
 
   showImage: boolean = false;
   pageTitle: string = "Product List";
-  products: Array<Product> = productData;
-  filteredProducts: Array<Product> = this.performFilter('');
+  products: Array<Product> = new Array();
+  filteredProducts: Array<Product> = new Array();
 
   get listFilter(): string { return this._listFilter; }
 
@@ -22,9 +22,14 @@ export class ProductListComponent implements OnInit {
     this.filteredProducts = this.performFilter(value);
   }
 
-  constructor() { }
+  constructor(
+    private readonly productService: ProductService
+  ) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.products = this.productService.getProducts();
+    this.filteredProducts = this.performFilter('');
+  }
 
   toggleImage: () => void = () => {
     this.showImage = !this.showImage;
